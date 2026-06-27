@@ -1,16 +1,28 @@
 import sharp from 'sharp';
-import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
-const logo = readFileSync(join(root, 'public', 'logo.png'));
+const source = join(root, 'public', 'logo-source.png');
 
-const width = 1200;
-const height = 630;
+async function generateAssets() {
+  const size = 512;
+  const logo = await sharp(source)
+    .resize(size, size, {
+      fit: 'contain',
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    })
+    .png()
+    .toBuffer();
 
-const svgOverlay = `
+  await sharp(logo).toFile(join(root, 'public', 'logo.png'));
+  await sharp(logo).resize(32, 32).toFile(join(root, 'public', 'favicon.png'));
+
+  const width = 1200;
+  const height = 630;
+
+  const svgOverlay = `
 <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -34,25 +46,20 @@ const svgOverlay = `
   </text>
 </svg>`;
 
-async function generate() {
   const logoResized = await sharp(logo)
-    .resize(120, 120, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .resize(120, 120)
     .png()
     .toBuffer();
 
-  const base = sharp(Buffer.from(svgOverlay));
-
-  await base
-    .composite([
-      { input: logoResized, top: 280, left: 540 - 60 },
-    ])
+  await sharp(Buffer.from(svgOverlay))
+    .composite([{ input: logoResized, top: 280, left: 540 - 60 }])
     .png()
     .toFile(join(root, 'public', 'og-image.png'));
 
-  console.log('Generated public/og-image.png');
+  console.log('Generated logo.png, favicon.png, og-image.png');
 }
 
-generate().catch((err) => {
+generateAssets().catch((err) => {
   console.error(err);
   process.exit(1);
 });
