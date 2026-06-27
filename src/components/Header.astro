@@ -1,0 +1,33 @@
+---
+import { site } from "../data/site";
+---
+
+<header class="border-b border-[var(--color-border)] bg-[var(--color-bg)]">
+  <div class="container-main flex items-center justify-between gap-4 py-4">
+    <a href="/" class="flex items-center gap-3 no-underline hover:no-underline" aria-label={`${site.brand} — home`}>
+      <img
+        src="/logo.png"
+        alt={`${site.brand} logo`}
+        width="36"
+        height="36"
+        class="h-9 w-9"
+        loading="eager"
+        decoding="async"
+      />
+      <span class="text-lg font-semibold text-[var(--color-text)]">{site.brand}</span>
+    </a>
+    <a
+      href={site.valetfyUrl}
+      class="btn-primary text-sm !px-4 !py-2.5"
+      rel="noopener"
+    >
+      See how Valetfy works →
+    </a>
+  </div>
+</header>
+
+<style>
+  header a:first-child:hover span {
+    color: var(--color-text);
+  }
+</style>

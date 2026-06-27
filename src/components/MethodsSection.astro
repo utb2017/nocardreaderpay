@@ -1,0 +1,44 @@
+---
+import { paymentMethods } from "../data/payment-methods";
+---
+
+<section id="methods" class="section-padding bg-[var(--color-bg-subtle)]" aria-labelledby="methods-heading">
+  <div class="container-main">
+    <div class="max-w-3xl mb-10">
+      <h2 id="methods-heading" class="text-3xl font-bold tracking-tight text-[var(--color-text)]">
+        Ways to take payments without a card reader
+      </h2>
+      <p class="mt-4 text-lg prose-muted">
+        An honest comparison — each method has a place. Pick based on where you work, how customers pay, and how much friction you can tolerate.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {paymentMethods.map((method) => (
+        <article
+          class:list={[
+            "card-premium p-6 md:p-8",
+            method.featured && "card-premium-highlight ring-1 ring-[var(--color-accent)]/20",
+          ]}
+        >
+          {method.featured && <span class="badge mb-3">Best for in-person</span>}
+          <h3 class="text-xl font-semibold text-[var(--color-text)]">{method.name}</h3>
+          <p class="mt-3 prose-muted leading-relaxed">{method.summary}</p>
+          {method.link && (
+            <p class="mt-4 text-sm">
+              Learn more:{" "}
+              <a
+                href={method.link.href}
+                class="text-link-plain"
+                rel={method.featured ? "noopener" : "nofollow noopener"}
+                target="_blank"
+              >
+                {method.link.label}
+              </a>
+            </p>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

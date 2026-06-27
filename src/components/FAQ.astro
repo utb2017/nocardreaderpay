@@ -1,0 +1,74 @@
+---
+import { faqItems } from "../data/faq";
+---
+
+<section id="faq" class="section-padding bg-[var(--color-bg)]" aria-labelledby="faq-heading">
+  <div class="container-main max-w-3xl">
+    <h2 id="faq-heading" class="text-3xl font-bold tracking-tight text-[var(--color-text)]">
+      Frequently asked questions
+    </h2>
+    <p class="mt-4 text-lg prose-muted mb-8">
+      Common questions about accepting payments without a card reader or terminal.
+    </p>
+
+    <div class="space-y-3">
+      {faqItems.map((item) => (
+        <details class="faq-item group card-premium">
+          <summary class="faq-summary">
+            <span>{item.question}</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-item {
+    overflow: hidden;
+  }
+
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-accent);
+    transition: transform 0.2s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-icon {
+      transition: none;
+    }
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+</style>

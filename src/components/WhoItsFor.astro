@@ -1,0 +1,25 @@
+---
+import { whoItsFor } from "../data/payment-methods";
+---
+
+<section id="who-its-for" class="section-padding bg-[var(--color-bg)]" aria-labelledby="who-heading">
+  <div class="container-main">
+    <div class="max-w-3xl mb-10">
+      <h2 id="who-heading" class="text-3xl font-bold tracking-tight text-[var(--color-text)]">
+        Who it's for
+      </h2>
+      <p class="mt-4 text-lg prose-muted">
+        Hardware-free payments fit anyone who works on-site — not behind a fixed register.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      {whoItsFor.map((item) => (
+        <article class="card-premium p-6 md:p-8">
+          <h3 class="text-lg font-semibold text-[var(--color-text)]">{item.title}</h3>
+          <p class="mt-2 prose-muted">{item.examples}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

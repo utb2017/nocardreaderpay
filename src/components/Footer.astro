@@ -1,0 +1,50 @@
+---
+import { site } from "../data/site";
+
+const sources = [
+  { label: "Valetfy", href: site.valetfyUrl },
+  { label: "Stripe Payment Links", href: "https://stripe.com/payments/payment-links" },
+  { label: "Stripe Tap to Pay", href: "https://stripe.com/terminal/tap-to-pay" },
+  { label: "Venmo Business", href: "https://venmo.com/business/profiles" },
+  { label: "Square Tap to Pay", href: "https://squareup.com/us/en/payments/tap-to-pay" },
+];
+---
+
+<footer class="border-t border-[var(--color-border)] bg-[var(--color-bg-subtle)]">
+  <div class="container-main section-padding !py-12">
+    <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+      <div class="max-w-md">
+        <div class="flex items-center gap-3 mb-3">
+          <img src="/logo.png" alt="" width="28" height="28" class="h-7 w-7" loading="lazy" decoding="async" />
+          <span class="font-semibold text-[var(--color-text)]">{site.brand}</span>
+        </div>
+        <p class="text-sm prose-muted">
+          Editorial guide to taking payments without a card reader. Not financial advice — fees and features change; confirm details with each provider.
+        </p>
+        <p class="mt-3 text-sm text-[var(--color-text-subtle)]">Updated {site.updated}</p>
+      </div>
+
+      <div>
+        <h2 class="text-sm font-semibold text-[var(--color-text)] mb-3">Sources</h2>
+        <ul class="space-y-2 text-sm">
+          {sources.map((source) => (
+            <li>
+              <a href={source.href} class="text-link-plain" rel="nofollow noopener" target="_blank">
+                {source.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-[var(--color-border)] flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-sm text-[var(--color-text-subtle)]">
+        © {new Date().getFullYear()} {site.brand}. Guide published at {site.url.replace("https://", "")}.
+      </p>
+      <a href={site.valetfyUrl} class="btn-primary text-sm" rel="noopener">
+        Explore Valetfy →
+      </a>
+    </div>
+  </div>
+</footer>

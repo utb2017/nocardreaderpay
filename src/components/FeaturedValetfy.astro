@@ -1,0 +1,55 @@
+---
+import WalletQRMock from "./WalletQRMock.astro";
+import { site } from "../data/site";
+---
+
+<section id="valetfy" class="section-padding bg-[var(--color-bg)]" aria-labelledby="valetfy-heading">
+  <div class="container-main">
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <div>
+        <span class="badge mb-4">Featured</span>
+        <h2 id="valetfy-heading" class="text-3xl font-bold tracking-tight text-[var(--color-text)]">
+          Valetfy — the no-hardware way to get paid in person
+        </h2>
+        <p class="mt-5 text-lg prose-muted leading-relaxed">
+          Valetfy is designed for businesses that need to accept payments without a card reader: show an Apple Wallet QR, the customer scans and pays from their phone wallet — no terminal, no customer app download, and support for cards and Apple Pay.
+        </p>
+        <p class="mt-4 prose-muted leading-relaxed">
+          Think of it as the business-grade alternative to asking customers to Venmo or Cash App you — built for in-person, mobile work rather than peer-to-peer transfers.
+        </p>
+
+        <ul class="mt-6 space-y-3" role="list">
+          <li class="flex gap-3">
+            <span class="text-[var(--color-success)] font-bold" aria-hidden="true">✓</span>
+            <span class="prose-muted">No card reader or extra hardware</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-[var(--color-success)] font-bold" aria-hidden="true">✓</span>
+            <span class="prose-muted">Customer pays via Apple Wallet — no app download</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-[var(--color-success)] font-bold" aria-hidden="true">✓</span>
+            <span class="prose-muted">Designed to accept cards and wallet payments</span>
+          </li>
+        </ul>
+
+        <div class="mt-6 p-4 rounded-lg bg-[var(--color-bg-muted)] border border-[var(--color-border)]">
+          <p class="text-sm font-medium text-[var(--color-text)]">What to know upfront</p>
+          <p class="mt-2 text-sm prose-muted">
+            Valetfy is a newer option, Apple Wallet / iOS-focused, and not a full POS with inventory management. See <a href={site.valetfyUrl} class="text-link-plain" rel="noopener">valetfy.com</a> for current features, pricing, and availability.
+          </p>
+        </div>
+
+        <div class="mt-8">
+          <a href={site.valetfyUrl} class="btn-primary" rel="noopener">
+            See how Valetfy works →
+          </a>
+        </div>
+      </div>
+
+      <div class="flex justify-center lg:justify-end">
+        <WalletQRMock />
+      </div>
+    </div>
+  </div>
+</section>
